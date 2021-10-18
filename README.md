@@ -1,5 +1,6 @@
 <p align="center"> 
   <a> <img src="https://github.com/misiubest/MKrew/blob/560bf2eddec8c35ea6902d26e94daacdb70d6852/mKrew.jpeg" width="200" height="200"/> </a> </p>
+  
 ## Program dla krwiodawców, regonalnych centrów i wszystkich, którym bliska jest idea pomagania innym. 
 
 ### Dzięki aplikacji możesz:
@@ -11,6 +12,6 @@
 
 <center>
 
-![profile](https://github.com/sanoczek/porfolio/blob/e1320dc1d01239df9ac01966e483aa3143abf213/img%20files/profileFoto.jpeg)
+![profile](https://github.com/misiubest/MKrew/blob/1c5ef9d6adaee6ffd997a3873d7290745b0a2bae/baner.png)
 
 </center>
