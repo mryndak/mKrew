@@ -10,8 +10,5 @@
 * odbierać powiadomienia o wydarzeniach czy ważnych komunikatach z RCKiK
 * zaprosić znajomych do aplikacji, przekazująć ideę oddawania krwi dalej w świat!
 
-<p align="center">
-
-![profile](https://github.com/misiubest/MKrew/blob/1c5ef9d6adaee6ffd997a3873d7290745b0a2bae/baner.png)
-
-</p>
+<p align="center"> 
+  <a> <img src="https://github.com/misiubest/MKrew/blob/1c5ef9d6adaee6ffd997a3873d7290745b0a2bae/baner.png" width="200" height="200"/> </a> </p>
