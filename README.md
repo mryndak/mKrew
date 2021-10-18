@@ -1,5 +1,5 @@
 <p align="center"> 
-  <a> <img src="https://github.com/misiubest/MKrew/blob/560bf2eddec8c35ea6902d26e94daacdb70d6852/mKrew.jpeg" width="200" height="200"/> </a> </p>
+  <a> <img src="https://github.com/misiubest/MKrew/blob/3d658df5cec8783e4b3669faef6662bd31e5f5b1/mKrew2.jpg" /> </a> </p>
   
 ## Program dla krwiodawców, regonalnych centrów i wszystkich, którym bliska jest idea pomagania innym. 
 
