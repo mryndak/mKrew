@@ -1,8 +1,8 @@
 <p align="center"> 
-  <a> <img src="https://github.com/misiubest/MKrew/blob/e4e7d02fc9dcbe4d1524d1a04279ecdf6a4a7b5b/mKrew2.jpg" width="200" height="200"/> </a> 
+  <a> <img src="https://github.com/misiubest/MKrew/blob/560bf2eddec8c35ea6902d26e94daacdb70d6852/mKrew.jpeg" width="200" height="200"/> </a> 
 </p>
 
-## Program dla krwiodawców, regonalnych centrów i wszystkich, którym bliska jest idea pomagania innym.
+|-## Program dla krwiodawców, regonalnych centrów i wszystkich, którym bliska jest idea pomagania innym.-|
 
 ### Dzięki aplikacji możesz:
 * umówić się na wizytę w wybranym RCKiK i wypełnić zdalnie formularz o stanie zdrowia, dzięki czemu zaoszczedzisz czas i sprawnie oddasz krew
