@@ -2,7 +2,7 @@
   <a> <img src="https://github.com/misiubest/MKrew/blob/560bf2eddec8c35ea6902d26e94daacdb70d6852/mKrew.jpeg" width="200" height="200"/> </a> 
 </p>
 
-|-## Program dla krwiodawców, regonalnych centrów i wszystkich, którym bliska jest idea pomagania innym.-|
+<p align="center"> ## Program dla krwiodawców, regonalnych centrów i wszystkich, którym bliska jest idea pomagania innym. </p>
 
 ### Dzięki aplikacji możesz:
 * umówić się na wizytę w wybranym RCKiK i wypełnić zdalnie formularz o stanie zdrowia, dzięki czemu zaoszczedzisz czas i sprawnie oddasz krew
@@ -10,3 +10,7 @@
 * przeglądąc zapasy krwi i prognozy zapotrzebowania na daną grupę krwi, dzięki czemu będziesz wiedział kiedy Twoja krew będzie najbardziej potrzebna
 * odbierać powiadomienia o wydarzeniach czy ważnych komunikatach z RCKiK
 * zaprosić znajomych do aplikacji, przekazująć ideę oddawania krwi dalej w świat!
+
+<p align="center"
+[baner](img src=https://github.com/misiubest/MKrew/blob/fda78dda27d2772fa4ce8cee4e1f919fa34c213f/baner.png)
+   </p>
