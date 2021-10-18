@@ -10,5 +10,7 @@
 * zaprosić znajomych do aplikacji, przekazująć ideę oddawania krwi dalej w świat!
 
 <center>
-![baner](https://github.com/misiubest/MKrew/blob/fda78dda27d2772fa4ce8cee4e1f919fa34c213f/baner.png)
-  </center>
+
+![profile](https://github.com/sanoczek/porfolio/blob/e1320dc1d01239df9ac01966e483aa3143abf213/img%20files/profileFoto.jpeg)
+
+</center>
