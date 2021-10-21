@@ -5,7 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
 
 @Data
 @Builder
@@ -13,14 +16,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table
 @Entity
-public class RCKiKEntity {
+public class Invitations {
 
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
 
-    private String nameRCKiK;
-    private String city;
-    private String phoneNumberRCKiK;
+    private String emailAdresses;
+    private String phoneNumberAdresses;
 
 }

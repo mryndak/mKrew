@@ -15,25 +15,15 @@ import java.util.List;
 @NoArgsConstructor
 @Table
 @Entity
-public class UserEntity {
+public class CatalogAwards {
 
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
 
-    @Column(unique = true)
-    private String login;
-    private String password;
-
-    @Column(unique = true)
-    private String email;
-    private String nameUser;
-    private String surname;
-    private String phoneNumberUser;
-
     @ElementCollection
-    private List<String> bloodGroup = new ArrayList<>();
+    private List<String> availablePrizes = new ArrayList<>();
+    private Double valuePrizes;
+    private String descriptionCatalogAwards;
 
-    @ManyToOne
-    private RCKiKEntity rcKiKEntity;
 }
