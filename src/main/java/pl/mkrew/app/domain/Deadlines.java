@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.andreinc.jbvext.annotations.date.IsDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
