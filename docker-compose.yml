@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  travel360_db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mkrew
+    ports:
+      - "3307:3306"

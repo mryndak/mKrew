@@ -34,6 +34,7 @@ public class UserRegistrationController {
                 .name(request.getName())
                 .surname(request.getSurname())
                 .password(request.getPassword())
+                .bloodGroup(request.getBloodGroup())
                 .build();
         service.addUser(userDto);
         return ResponseEntity.ok().build();

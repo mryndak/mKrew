@@ -27,5 +27,6 @@ public class AddUserRequest {
     private String email;
     @Pattern(regexp = "(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)", message = "numer telefonu musi zawierać format: 000-000-000")
     private String phoneNumber;
+    private String bloodGroup;
 
 }

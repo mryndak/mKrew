@@ -12,6 +12,7 @@ public class UserMapper {
                 .name(user.getName())
                 .surname(user.getSurname())
                 .phoneNumber(user.getPhoneNumber())
+                .bloodGroup(user.getBloodGroup())
                 .email(user.getEmail())
                 .login(user.getLogin())
                 .build();
@@ -22,6 +23,7 @@ public class UserMapper {
                 .surname(userDTO.getSurname())
                 .email(userDTO.getEmail())
                 .password(userDTO.getPassword())
+                .bloodGroup(userDTO.getBloodGroup())
                 .login(userDTO.getLogin())
                 .phoneNumber(userDTO.getPhoneNumber())
                 .build();

@@ -1,8 +1,46 @@
+
 spring:
   datasource:
     url: jdbc:mysql://localhost:3307/mKrew
     username: root
-    password: root
+    password: mkrew
   jpa:
     hibernate:
       ddl-auto: update
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: mkrew.kontakt@gmail.com
+    password: mkrew.sda
+    default-encoding: UTF-8
+    protocol: smtp
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
+  security:
+    user:
+      name: admin
+      password: admin123
+
+info:
+  app:
+    name: @project.name@
+    version: @project.version@
+    profile: ${spring.profiles.active}
+  serverInfo:
+    os: ${os.name}
+  user:
+    timeZone: ${user.timezone}
+    country: ${user.country}
+  metrics:
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+logging:
+  level:
+    root: DEBUG

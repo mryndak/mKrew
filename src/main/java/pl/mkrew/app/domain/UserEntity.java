@@ -28,18 +28,17 @@ public class UserEntity {
 
     @Column(unique = true)
     private String email;
-    private String nameUser;
+    private String name;
     private String surname;
-    private String phoneNumberUser;
+    private String phoneNumber;
+    private String bloodGroup;
+    @ManyToOne
+    private RCKiKEntity rcKiKEntity;
 
     private boolean confirmationStatus = false;
     @Column(unique = true)
     private String confirmationId;
     private LocalDateTime validTo;
 
-    @ElementCollection
-    private List<String> bloodGroup = new ArrayList<>();
 
-    @ManyToOne
-    private RCKiKEntity rcKiKEntity;
 }
