@@ -45,7 +45,7 @@ public class UserService {
         var passwordHash = encoder.encode(user.getPassword());
         user.setPassword(passwordHash);
         userRepository.save(user);
-        emailService.sendEmail(userDto.getEmail(), "Witam w travel360", "Witaj "
+        emailService.sendEmail(userDto.getEmail(), "Witam w mKrew", "Witaj "
                 + user.getName()
                 + ". Założyłeś konto w serwisie mKrew. Przesyłamy link aktywacyjny, który jest ważny 15min "
                 + "http://localhost:8080/v1/user/confirmation/"
