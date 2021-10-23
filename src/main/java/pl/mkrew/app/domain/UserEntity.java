@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -37,11 +39,11 @@ public class UserEntity {
     private RCKiK rckik;
 
     private boolean confirmationStatus = false;
-
     @Column(unique = true)
     private UUID confirmationId;
-
     private LocalDateTime validTo;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> roles = new HashSet<>();
 
 }

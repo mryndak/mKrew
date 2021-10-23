@@ -14,9 +14,9 @@ public class AddUserRequest {
 
     @NotNull
     @NotEmpty
-    @Size(min = 8, max = 32, message = "Login musi mieć zawierać 8-32 znaków")
+//    @Size(min = 8, max = 32, message = "Login musi mieć zawierać 8-32 znaków")
     private String login;
-    @Password(message = "Hasło musi zawierać min.8 znaków, wielką literę i znak specjalny")
+//    @Password(message = "Hasło musi zawierać min.8 znaków, wielką literę i znak specjalny")
     private String password;
     @NotEmpty(message = "Pole musi zawierać co najmniej jeden znak")
     private String name;
