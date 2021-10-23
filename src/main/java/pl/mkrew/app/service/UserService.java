@@ -67,5 +67,6 @@ public class UserService {
             u.setConfirmationStatus(true);
             userRepository.save(u);
         });
+        user.orElseThrow();
     }
 }

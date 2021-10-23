@@ -28,7 +28,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .mvcMatchers(HttpMethod.POST,"/v1/registration").anonymous()
-                .anyRequest().permitAll()
+                .mvcMatchers("/v1/user/confirmation/**").anonymous()
+                .mvcMatchers("/v1/user/**").authenticated()
+                .anyRequest().authenticated()
                 .and()
                 .httpBasic()
                 .and()

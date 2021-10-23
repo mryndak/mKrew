@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -40,6 +41,7 @@ public class UserEntity {
 
     private boolean confirmationStatus = false;
     @Column(unique = true)
+    @Type(type="org.hibernate.type.UUIDCharType")
     private UUID confirmationId;
     private LocalDateTime validTo;
 

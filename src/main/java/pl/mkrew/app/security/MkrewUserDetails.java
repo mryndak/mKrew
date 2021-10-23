@@ -17,6 +17,7 @@ public class MkrewUserDetails implements UserDetails {
     public Long getUserId() {
         return userEntity.getId();
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return userEntity.getRoles()
