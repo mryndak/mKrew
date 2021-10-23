@@ -48,7 +48,7 @@ public class UserService {
         emailService.sendEmail(userDto.getEmail(), "Witam w mKrew", "Witaj "
                 + user.getName()
                 + ". Założyłeś konto w serwisie mKrew. Przesyłamy link aktywacyjny, który jest ważny 15min "
-                + "http://localhost:8080/v1/user/confirmation/"
+                + "http://localhost:8080/v1/confirmation/"
                 + user.getConfirmationId()); //TODO: wysyłka maila powinna być osobno bo zamula endpoint. poszukać jak zrobić żeby było 30 wątków do obsługi maila
     }
 
@@ -68,5 +68,17 @@ public class UserService {
             userRepository.save(u);
         });
         user.orElseThrow();
+    }
+
+    public void resetPasswordForUser(Long userId, String oldPassword, String newPassword) {
+        var user = userRepository.findById(userId)
+                .get();
+        if (encoder.matches(oldPassword, user.getPassword())) {
+
+            user.setPassword(encoder.encode(newPassword));
+            userRepository.save(user);
+        } else {
+            throw new BadCredentialsException("Incorrect old password");
+        }
     }
 }
