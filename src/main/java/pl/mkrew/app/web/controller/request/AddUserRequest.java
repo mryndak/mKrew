@@ -1,4 +1,4 @@
-package pl.mkrew.app.request;
+package pl.mkrew.app.web.controller.request;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
@@ -16,7 +16,6 @@ public class AddUserRequest {
     @NotEmpty
     @Size(min = 8, max = 32, message = "Login musi mieć zawierać 8-32 znaków")
     private String login;
-    //@Size(min = 8, max = 32)
     @Password(message = "Hasło musi zawierać min.8 znaków, wielką literę i znak specjalny")
     private String password;
     @NotEmpty(message = "Pole musi zawierać co najmniej jeden znak")

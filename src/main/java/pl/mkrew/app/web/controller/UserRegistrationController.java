@@ -1,26 +1,24 @@
-package pl.mkrew.app.response;
+package pl.mkrew.app.web.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.mkrew.app.dto.UserDto;
-import pl.mkrew.app.request.AddUserRequest;
+import pl.mkrew.app.web.controller.request.AddUserRequest;
 import pl.mkrew.app.service.UserService;
 
 import javax.validation.Valid;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/registration")
 public class UserRegistrationController {
+
     private final UserService service;
 
-    @Autowired
-    public UserRegistrationController(UserService service) {
-        this.service = service;
-    }
     @PostMapping
     public ResponseEntity<Void> addUser(@Valid @RequestBody AddUserRequest request) {
         var isExist = service.checkExistUser(request.getLogin(), request.getEmail());

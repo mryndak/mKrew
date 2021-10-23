@@ -14,5 +14,4 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     Optional<UserEntity> findByConfirmationId (UUID confirmationId);
 
-    Optional<UserEntity> findUserByLogin (String login);
 }
