@@ -6,10 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.andreinc.jbvext.annotations.date.IsDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -21,12 +18,13 @@ import java.time.LocalDateTime;
 @Entity
 public class BloodSupplies {
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
 
-    private LocalDate localDateBloodSupplies;
-    private Double valueBloodSupplies;
-    private String bloodGroup;
+    private LocalDate date;
+    private Double value;
+    @Enumerated(EnumType.STRING)
+    private BloodGroup bloodGroup;
 
 }
