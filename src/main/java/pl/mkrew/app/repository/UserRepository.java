@@ -5,13 +5,14 @@ import org.springframework.stereotype.Repository;
 import pl.mkrew.app.domain.UserEntity;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-    boolean existsByConfirmEmailOrLogin (String login, String email);
+    boolean existsByEmailOrLogin (String login, String email);
 
-    Optional<UserEntity> findByConfirmationId (String confirmationId);
+    Optional<UserEntity> findByConfirmationId (UUID confirmationId);
 
     Optional<UserEntity> findUserByLogin (String login);
 }

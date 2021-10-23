@@ -13,14 +13,15 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table
 @Entity
-public class RCKiKEntity {
+public class RCKiK {
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long id;
 
-    private String nameRCKiK;
+    private String name;
     private String city;
-    private String phoneNumberRCKiK;
+    private String phoneNumber;
+    private String website;
 
 }

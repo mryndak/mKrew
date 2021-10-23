@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -18,26 +17,30 @@ import java.util.List;
 @Entity
 public class UserEntity {
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String login;
     private String password;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
     private String name;
     private String surname;
     private String phoneNumber;
-    private String bloodGroup;
+    @Enumerated(EnumType.STRING)
+    private BloodGroup bloodGroup;
+
     @ManyToOne
-    private RCKiKEntity rcKiKEntity;
+    private RCKiK rckik;
 
     private boolean confirmationStatus = false;
+
     @Column(unique = true)
-    private String confirmationId;
+    private UUID confirmationId;
+
     private LocalDateTime validTo;
 
 

@@ -1,6 +1,7 @@
 package pl.mkrew.app.mapper;
 
 import org.springframework.stereotype.Service;
+import pl.mkrew.app.domain.BloodGroup;
 import pl.mkrew.app.domain.UserEntity;
 import pl.mkrew.app.dto.UserDto;
 
@@ -12,7 +13,7 @@ public class UserMapper {
                 .name(user.getName())
                 .surname(user.getSurname())
                 .phoneNumber(user.getPhoneNumber())
-                .bloodGroup(user.getBloodGroup())
+                .bloodGroup(user.getBloodGroup().name())
                 .email(user.getEmail())
                 .login(user.getLogin())
                 .build();
@@ -23,7 +24,7 @@ public class UserMapper {
                 .surname(userDTO.getSurname())
                 .email(userDTO.getEmail())
                 .password(userDTO.getPassword())
-                .bloodGroup(userDTO.getBloodGroup())
+                .bloodGroup(BloodGroup.valueOf(userDTO.getBloodGroup()))
                 .login(userDTO.getLogin())
                 .phoneNumber(userDTO.getPhoneNumber())
                 .build();

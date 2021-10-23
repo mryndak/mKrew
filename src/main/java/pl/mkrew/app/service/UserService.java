@@ -25,7 +25,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final EmailService emailService;
 
-    PasswordEncoder encoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public List<UserDto> getAllUsers() {
         log.info("Get users");
@@ -38,7 +38,7 @@ public class UserService {
     public void addUser(UserDto userDto) {
         log.info("add user");
         var user = userMapper.mapToUser(userDto);
-        var confiramtionId = UUID.randomUUID().toString();
+        var confiramtionId = UUID.randomUUID();
         var validTo = LocalDateTime.now().plusMinutes(15);
         user.setConfirmationId(confiramtionId);
         user.setValidTo(validTo);
@@ -58,9 +58,10 @@ public class UserService {
     }
 
     public boolean checkExistUser(String login, String email) {
-        return userRepository.existsByConfirmEmailOrLogin(login, email);
+        return userRepository.existsByEmailOrLogin(login, email);
     }
-    public void confirmUser(String confirmationId) {
+
+    public void confirmUser(UUID confirmationId) {
         var user = userRepository.findByConfirmationId(confirmationId);
         user.ifPresent(u -> {
             u.setConfirmationStatus(true);
