@@ -17,7 +17,7 @@ import pl.mkrew.app.repository.UserRepository;
 import pl.mkrew.app.security.MkrewUserDetailsService;
 
 @Configuration
-//@EnableGlobalMethodSecurity
+@EnableGlobalMethodSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
