@@ -1,4 +1,4 @@
-package pl.mkrew.app.web.controller.response;
+package pl.mkrew.app.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("v1/user")
+@RequestMapping("/v1/user")
 public class UserController {
 
     private final UserService userService;

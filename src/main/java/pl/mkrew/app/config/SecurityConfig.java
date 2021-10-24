@@ -23,13 +23,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserRepository userRepository;
 
+    private static final String[] AUTH_WHITELIST = {
+            // -- Swagger UI v2
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            // -- Swagger UI v3 (OpenAPI)
+            "/v3/api-docs/**",
+            "/swagger-ui/**"
+            // other public endpoints of your API may be appended to this array
+    };
+
+    private static final String[] ANONYMOUS_LIST = {
+            "/v1/user/confirmation/**",
+            "/v1/user/registration"
+    };
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .mvcMatchers(HttpMethod.POST,"/v1/registration").anonymous()
-                .mvcMatchers("/v1/user/confirmation/**").anonymous()
-                .mvcMatchers("/v1/user/**").authenticated()
+                .antMatchers(AUTH_WHITELIST).permitAll()
+                .antMatchers(ANONYMOUS_LIST).anonymous()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()

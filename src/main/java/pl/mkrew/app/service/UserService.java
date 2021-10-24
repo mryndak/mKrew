@@ -2,10 +2,10 @@ package pl.mkrew.app.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.mkrew.app.domain.UserEntity;
 import pl.mkrew.app.dto.UserDto;
 import pl.mkrew.app.mapper.UserMapper;
 import pl.mkrew.app.repository.UserRepository;
@@ -37,12 +37,12 @@ public class UserService {
 
     public void addUser(UserDto userDto) {
         log.info("add user");
-        var user = userMapper.mapToUser(userDto);
-        var confiramtionId = UUID.randomUUID();
-        var validTo = LocalDateTime.now().plusMinutes(15);
+        UserEntity user = userMapper.mapToUser(userDto);
+        UUID confiramtionId = UUID.randomUUID();
+        LocalDateTime validTo = LocalDateTime.now().plusMinutes(15);
         user.setConfirmationId(confiramtionId);
         user.setValidTo(validTo);
-        var passwordHash = encoder.encode(user.getPassword());
+        String passwordHash = encoder.encode(user.getPassword());
         user.setPassword(passwordHash);
         userRepository.save(user);
         emailService.sendEmail(userDto.getEmail(), "Witam w mKrew", "Witaj "
@@ -62,7 +62,7 @@ public class UserService {
     }
 
     public void confirmUser(UUID confirmationId) {
-        var user = userRepository.findByConfirmationId(confirmationId);
+        Optional<UserEntity> user = userRepository.findByConfirmationId(confirmationId);
         user.ifPresent(u -> {
             u.setConfirmationStatus(true);
             userRepository.save(u);
