@@ -4,15 +4,21 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.mail.internet.MimeMessage;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Service
 @RequiredArgsConstructor
 public class EmailService {
     private final JavaMailSender javaMailSender;
 
+    ExecutorService executor = Executors.newFixedThreadPool(30);
+
+    @Async
     @SneakyThrows // zamienia wyjatek exception na runtime
     public void sendEmail(String recipient, String subject, String message) {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
@@ -22,4 +28,5 @@ public class EmailService {
         mimeMessageHelper.setText(message);
         javaMailSender.send(mimeMessage);
     }
+
 }

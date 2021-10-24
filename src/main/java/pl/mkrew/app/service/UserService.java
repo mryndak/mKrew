@@ -49,7 +49,7 @@ public class UserService {
                 + user.getName()
                 + ". Założyłeś konto w serwisie mKrew. Przesyłamy link aktywacyjny, który jest ważny 15min "
                 + "http://localhost:8080/v1/user/confirmation/"
-                + user.getConfirmationId());
+                + user.getConfirmationId()); //TODO: wysyłka maila powinna być osobno bo zamula endpoint. poszukać jak zrobić żeby było 30 wątków do obsługi maila
     }
 
     public Optional<UserDto> getUser(Long userId) {
@@ -67,5 +67,6 @@ public class UserService {
             u.setConfirmationStatus(true);
             userRepository.save(u);
         });
+        user.orElseThrow();
     }
 }
