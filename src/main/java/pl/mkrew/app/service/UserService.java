@@ -72,7 +72,7 @@ public class UserService {
     }
 
     public void resetPasswordForUser(Long userId, String oldPassword, String newPassword) {
-        var user = userRepository.findById(userId)
+        UserEntity user = userRepository.findById(userId)
                 .get();
         if (encoder.matches(oldPassword, user.getPassword())) {
             user.setPassword(encoder.encode(newPassword));
