@@ -13,8 +13,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     boolean existsByEmailOrLogin (String login, String email);
     Optional<UserEntity> findByConfirmationId (UUID confirmationId);
-    Optional<UserEntity> findByLogin(String login);
-
     Optional<UserEntity> findUserByLogin (String login);
 
 }
