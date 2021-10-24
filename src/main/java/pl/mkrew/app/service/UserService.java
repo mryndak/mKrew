@@ -74,7 +74,6 @@ public class UserService {
         var user = userRepository.findById(userId)
                 .get();
         if (encoder.matches(oldPassword, user.getPassword())) {
-
             user.setPassword(encoder.encode(newPassword));
             userRepository.save(user);
         } else {
