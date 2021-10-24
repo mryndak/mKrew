@@ -44,8 +44,6 @@ public class UserEntity {
     @Type(type="org.hibernate.type.UUIDCharType")
     private UUID confirmationId;
     private LocalDateTime validTo;
-
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles = new HashSet<>();
-
 }
