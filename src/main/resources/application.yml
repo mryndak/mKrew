@@ -36,3 +36,9 @@ management:
     web:
       exposure:
         include: '*'
+
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: true
+      base-url: /swagger
