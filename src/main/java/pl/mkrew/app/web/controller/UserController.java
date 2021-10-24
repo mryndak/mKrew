@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.mkrew.app.response.GetUserDetails;
 import pl.mkrew.app.service.UserService;
+import pl.mkrew.app.web.controller.response.GetUserResponse;
 
 import java.util.UUID;
 
