@@ -14,18 +14,18 @@ import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/user/registration")
+@RequestMapping("/v1/registration")
 public class UserRegistrationController {
 
     private final UserService service;
 
     @PostMapping
     public ResponseEntity<Void> addUser(@Valid @RequestBody AddUserRequest request) {
-        boolean isExist = service.checkExistUser(request.getLogin(), request.getEmail());
+        var isExist = service.checkExistUser(request.getLogin(), request.getEmail());
         if (isExist) {
             return ResponseEntity.unprocessableEntity().build();
         }
-        UserDto userDto = UserDto.builder()
+        var userDto = UserDto.builder()
                 .login(request.getLogin())
                 .email(request.getEmail())
                 .phoneNumber(request.getPhoneNumber())

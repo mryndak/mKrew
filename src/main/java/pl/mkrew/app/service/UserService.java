@@ -6,7 +6,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.mkrew.app.domain.UserEntity;
 import pl.mkrew.app.dto.UserDto;
 import pl.mkrew.app.mapper.UserMapper;
 import pl.mkrew.app.repository.UserRepository;
@@ -38,19 +37,19 @@ public class UserService {
 
     public void addUser(UserDto userDto) {
         log.info("add user");
-        UserEntity user = userMapper.mapToUser(userDto);
-        UUID confiramtionId = UUID.randomUUID();
-        LocalDateTime validTo = LocalDateTime.now().plusMinutes(15);
+        var user = userMapper.mapToUser(userDto);
+        var confiramtionId = UUID.randomUUID();
+        var validTo = LocalDateTime.now().plusMinutes(15);
         user.setConfirmationId(confiramtionId);
         user.setValidTo(validTo);
-        String passwordHash = encoder.encode(user.getPassword());
+        var passwordHash = encoder.encode(user.getPassword());
         user.setPassword(passwordHash);
         userRepository.save(user);
         emailService.sendEmail(userDto.getEmail(), "Witam w mKrew", "Witaj "
                 + user.getName()
                 + ". Założyłeś konto w serwisie mKrew. Przesyłamy link aktywacyjny, który jest ważny 15min "
                 + "http://localhost:8080/v1/user/confirmation/"
-                + user.getConfirmationId()); //TODO: wysyłka maila powinna być osobno bo zamula endpoint. poszukać jak zrobić żeby było 30 wątków do obsługi maila
+                + user.getConfirmationId());
     }
 
     public Optional<UserDto> getUser(Long userId) {
@@ -63,22 +62,10 @@ public class UserService {
     }
 
     public void confirmUser(UUID confirmationId) {
-        Optional<UserEntity> user = userRepository.findByConfirmationId(confirmationId);
+        var user = userRepository.findByConfirmationId(confirmationId);
         user.ifPresent(u -> {
             u.setConfirmationStatus(true);
             userRepository.save(u);
         });
-        user.orElseThrow();
-    }
-
-    public void resetPasswordForUser(Long userId, String oldPassword, String newPassword) {
-        UserEntity user = userRepository.findById(userId)
-                .get();
-        if (encoder.matches(oldPassword, user.getPassword())) {
-            user.setPassword(encoder.encode(newPassword));
-            userRepository.save(user);
-        } else {
-            throw new BadCredentialsException("Incorrect old password");
-        }
     }
 }
