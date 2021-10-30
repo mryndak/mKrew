@@ -4,9 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -37,11 +40,10 @@ public class UserEntity {
     private RCKiK rckik;
 
     private boolean confirmationStatus = false;
-
     @Column(unique = true)
+    @Type(type="org.hibernate.type.UUIDCharType")
     private UUID confirmationId;
-
     private LocalDateTime validTo;
-
-
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> roles = new HashSet<>();
 }

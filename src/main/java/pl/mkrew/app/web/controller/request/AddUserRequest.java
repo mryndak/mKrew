@@ -12,7 +12,6 @@ import javax.validation.constraints.Size;
 @Data
 public class AddUserRequest {
 
-    @NotNull
     @NotEmpty
     @Size(min = 8, max = 32, message = "Login musi mieć zawierać 8-32 znaków")
     private String login;
