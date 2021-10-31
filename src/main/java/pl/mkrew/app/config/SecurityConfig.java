@@ -44,6 +44,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/v1/user/confirmation/**",
             "/v1/user/registration"
     };
+    // lista będzie powiększona w miarę potrzeb
+    private  static  final String[] AUTH_USER_ROLE_LIST = {
+            "/v1/user"
+    };
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -51,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(AUTH_WHITELIST).permitAll()
                 .antMatchers(ANONYMOUS_LIST).permitAll()
+                .antMatchers(AUTH_USER_ROLE_LIST).hasRole("USER")
                 .antMatchers("/resources/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
