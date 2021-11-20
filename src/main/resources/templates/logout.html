@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>logout</title>
+</head>
+<body>
+<div sec:authorize="isAuthenticated()">
+    <a href="javascript: document.logoutForm.submit()" class="dropdown-toggle">Sign out</a>
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Sign Out" />
+    </form>
+</div>
+</body>
+</html>
