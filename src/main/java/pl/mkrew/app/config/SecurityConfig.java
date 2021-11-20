@@ -42,7 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] ANONYMOUS_LIST = {
             "/v1/user/confirmation/**",
-            "/v1/user/registration"
+            "/v1/user/registration",
+            "/v1/appointment/**"
     };
     // lista będzie powiększona w miarę potrzeb
     private  static  final String[] AUTH_USER_ROLE_LIST = {

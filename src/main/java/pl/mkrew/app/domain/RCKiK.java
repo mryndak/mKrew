@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
@@ -23,5 +25,8 @@ public class RCKiK {
     private String city;
     private String phoneNumber;
     private String website;
+
+    @OneToMany
+    private List<Appointment> appointments = new ArrayList<>();
 
 }
