@@ -9,10 +9,10 @@ import java.util.Optional;
 @Repository
 public interface BloodSuppliesRepository extends JpaRepository<BloodSupplies, Long> {
 
-    Optional<BloodSupplies> findByBloodGroup();
-
-    Optional<BloodSupplies> findByRcKiK(String rcKiK);
-
-    Optional<BloodSupplies> findByBloodLevel(String bloodLevel);
+//    Optional<BloodSupplies> findByBloodGroup();
+//
+//    Optional<BloodSupplies> findByRcKiK(String rcKiK);
+//
+//    Optional<BloodSupplies> findByBloodLevel(String bloodLevel);
 
 }

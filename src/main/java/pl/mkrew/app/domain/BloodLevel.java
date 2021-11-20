@@ -1,11 +1,9 @@
 package pl.mkrew.app.domain;
 
 public enum BloodLevel {
-
-    PILNIE_POTRZEBA,
-    STAN_ŚREDNI,
-    STAN_OPTYMALNY,
-    BRAK_POTRZEB,
-    STOP
-
+    L_0,
+    L_25,
+    L_50,
+    L_75,
+    L_100
 }

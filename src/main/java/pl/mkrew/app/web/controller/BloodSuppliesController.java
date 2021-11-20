@@ -1,32 +1,25 @@
 package pl.mkrew.app.web.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import pl.mkrew.app.domain.BloodSupplies;
 import pl.mkrew.app.domain.RCKiK;
 import pl.mkrew.app.dto.BloodSuppliesDto;
 import pl.mkrew.app.repository.BloodSuppliesRepository;
+import pl.mkrew.app.service.BloodSuppliesService;
 
+@RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/v1/user")
+@RequestMapping(value = "/v1/blood-supplies")
 public class BloodSuppliesController {
 
-    @Autowired
-    BloodSuppliesRepository bloodSuppliesRepository;
+    private final BloodSuppliesService bloodSuppliesService;
 
-    @PostMapping
-    public void saveBloodSupplies(@RequestBody BloodSuppliesDto bloodSuppliesDto) {
-
-        BloodSupplies bloodSupplies= new BloodSupplies();
-
-        bloodSupplies.setBloodGroup(bloodSuppliesDto.getBloodGroup());
-        bloodSupplies.setBloodLevel(bloodSuppliesDto.getBloodLevel());
-        bloodSupplies.setLocalDateUpdate(bloodSuppliesDto.getLocalDate());
-        bloodSupplies.getRcKiK().getCity();
-
-        bloodSuppliesRepository.save(bloodSupplies);
+    @GetMapping("/refresh")
+    public ResponseEntity<Void> refreshBloodSupplies() {
+        bloodSuppliesService.refresh();
+        return ResponseEntity.noContent().build();
     }
 }

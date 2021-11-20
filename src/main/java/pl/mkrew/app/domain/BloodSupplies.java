@@ -20,7 +20,7 @@ public class BloodSupplies {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
 
-    private LocalDate localDateUpdate;
+    private LocalDate lastUpdated;
 
     @Enumerated(EnumType.STRING)
     private BloodGroup bloodGroup;
@@ -29,5 +29,5 @@ public class BloodSupplies {
     private BloodLevel bloodLevel;
 
     @ManyToOne
-    private RCKiK rcKiK;
+    private RCKiK rckik;
 }
