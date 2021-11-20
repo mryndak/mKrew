@@ -6,4 +6,5 @@ import pl.mkrew.app.domain.Appointment;
 
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
+
 }
