@@ -8,9 +8,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Data
 @Builder
@@ -46,4 +44,7 @@ public class UserEntity {
     private LocalDateTime validTo;
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles = new HashSet<>();
+
+    @OneToMany
+    private List<Appointment> appointments = new ArrayList<>();
 }
