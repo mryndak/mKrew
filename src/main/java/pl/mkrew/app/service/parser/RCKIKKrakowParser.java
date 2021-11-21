@@ -9,6 +9,7 @@ import org.jsoup.select.Elements;
 import pl.mkrew.app.domain.BloodGroup;
 import pl.mkrew.app.domain.BloodLevel;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,15 +37,12 @@ public class RCKIKKrakowParser implements BloodSuppliesParser{
 
         Map<BloodGroup, BloodLevel> data = new LinkedHashMap<>();
         List<String> bloodGroups = image_wrapper.eachText();
-        List<String> bloodLevels = image_wrapper.eachText();
-
-        List<Attributes> attributes = image_wrapper.unwrap()
-                        .stream()
-                .flatMap(p -> p.getElementsByAttributeValueContaining("src", ".png").stream())
-                .map(v -> v.attributes())
+        List<String> bloodLevels = image_wrapper.select("img[src$=.png]")
+                .eachAttr("src")
+                .stream()
+                .map(v -> v.replace("https://rckik.krakow.pl/wp-content/uploads/2016/11/x", ""))
+                .map(v -> v.substring(0, v.indexOf(".png")))
                 .collect(Collectors.toList());
-
-
 
 
         for(int i = 0; i < bloodGroups.size(); i++ ) {
