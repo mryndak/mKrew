@@ -1,21 +1,15 @@
 package pl.mkrew.app.web.controller;
 
-import com.sun.jdi.request.InvalidRequestStateException;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.hql.internal.QueryExecutionRequestException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.firewall.RequestRejectedException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.mkrew.app.service.AppointmentService;
 import pl.mkrew.app.web.controller.request.CreateScheduleAppointmentRequest;
 import pl.mkrew.app.web.request.ReservationRequest;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.Date;
 
 @RequiredArgsConstructor
 @RestController
@@ -35,20 +29,25 @@ public class AppointmentController {
 
     private void validate(CreateScheduleAppointmentRequest request) {
         if (request.getEndDate().isBefore(request.getStartDate())) {
-            throw new RequestRejectedException("Schedule end date is before start date");
+            throw new RequestRejectedException("Appointment end date is before start date");
         }
        else if (request.getStartDate().isAfter(request.getEndDate())) {
-            throw new RequestRejectedException("Schedule start date is after end date");
+            throw new RequestRejectedException("Appointment start date is after end date");
         }
        else if (request.getStartDate().isBefore(LocalDate.now())) {
-            throw new RequestRejectedException("Schedule start date is before today's date");
+            throw new RequestRejectedException("Appointment start date is before today's date");
         }
     }
 
     @PostMapping("/reservation")
     public ResponseEntity<Void> createReservation(@RequestBody @Valid ReservationRequest reservationRequest) {
-        appointmentService.makeReservation(reservationRequest.getAppointmentID(), reservationRequest.getUserId());
+        appointmentService.makeReservation(reservationRequest.getAppointmentId(), reservationRequest.getUserId());
         return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/reservarion/{reservationId}")
+    public void removeReservation(@PathVariable("reservationId") Long reservationId) {
+        appointmentService.deleteReservation(reservationId);
     }
 
 }

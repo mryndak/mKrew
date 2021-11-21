@@ -47,6 +47,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     };
     // lista będzie powiększona w miarę potrzeb
     private  static  final String[] AUTH_USER_ROLE_LIST = {
+            "/reservarion/{reservationId}",
+            "/v1/user"
+    };
+
+    private  static  final String[] AUTH_ADMIN_ROLE_LIST = {
+            "/reservarion/{reservationId}",
             "/v1/user"
     };
 
@@ -57,6 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(AUTH_WHITELIST).permitAll()
                 .antMatchers(ANONYMOUS_LIST).permitAll()
                 .antMatchers(AUTH_USER_ROLE_LIST).hasRole("USER")
+                .antMatchers(AUTH_ADMIN_ROLE_LIST).hasRole("ADMIN")
                 .antMatchers("/resources/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
