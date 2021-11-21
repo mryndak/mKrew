@@ -1,20 +1,17 @@
 package pl.mkrew.app.domain;
 
 import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.Map;
 
 public enum BloodGroup {
 
-    ZERO_RH_p("0 RhD+"),
-    ZERO_RH_m("0 RhD-"),
-    A_RH_p("A RhD+"),
-    A_RH_m("A RhD-"),
-    B_RH_p("B RhD+"),
-    B_RH_m("B RhD-"),
-    AB_RH_p("AB RhD+"),
-    AB_RH_m("AB RhD-");
+    ZERO_RH_p("0Rh+"),
+    ZERO_RH_m("0Rh-"),
+    A_RH_p("ARh+"),
+    A_RH_m("ARh-"),
+    B_RH_p("BRh+"),
+    B_RH_m("BRh-"),
+    AB_RH_p("ABRh+"),
+    AB_RH_m("ABRh-");
 
     private final String value;
 
@@ -27,7 +24,10 @@ public enum BloodGroup {
     }
 
     public static BloodGroup getBloodGroupByName(String name) {
-        return Arrays.stream(BloodGroup.values()).filter(p -> name.equals(p.getValue()))
+        String parsedName = name.trim().replace("D", "")
+                .replace("–", "-")
+                .replaceAll(" ", "");
+        return Arrays.stream(BloodGroup.values()).filter(p -> parsedName.equals(p.getValue()))
                 .findFirst()
                 .orElse(null);
     }

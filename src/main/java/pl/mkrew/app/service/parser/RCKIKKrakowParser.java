@@ -2,14 +2,10 @@ package pl.mkrew.app.service.parser;
 
 import lombok.SneakyThrows;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Attribute;
-import org.jsoup.nodes.Attributes;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import pl.mkrew.app.domain.BloodGroup;
 import pl.mkrew.app.domain.BloodLevel;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +38,6 @@ public class RCKIKKrakowParser implements BloodSuppliesParser{
                 .map(v -> v.replace("https://rckik.krakow.pl/wp-content/uploads/2016/11/x", ""))
                 .map(v -> v.substring(0, v.indexOf(".png")))
                 .collect(Collectors.toList());
-
 
         for(int i = 0; i < bloodGroups.size(); i++ ) {
             BloodGroup group = BloodGroup.getBloodGroupByName(bloodGroups.get(i));

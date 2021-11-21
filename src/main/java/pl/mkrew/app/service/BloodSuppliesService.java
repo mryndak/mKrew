@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import pl.mkrew.app.domain.BloodGroup;
 import pl.mkrew.app.domain.BloodLevel;
 import pl.mkrew.app.domain.RCKiK;
-import pl.mkrew.app.dto.RCKiKDto;
-import pl.mkrew.app.mapper.RCKiKMapper;
 import pl.mkrew.app.repository.RCKiKRepository;
 import pl.mkrew.app.service.parser.BloodSuppliesParserService;
 import pl.mkrew.app.util.BloodSuppliesParserName;
