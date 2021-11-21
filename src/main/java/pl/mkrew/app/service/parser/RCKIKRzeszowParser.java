@@ -2,6 +2,7 @@ package pl.mkrew.app.service.parser;
 
 import lombok.SneakyThrows;
 import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
 import pl.mkrew.app.domain.BloodGroup;
 import pl.mkrew.app.domain.BloodLevel;
 
@@ -23,7 +24,7 @@ class RCKIKRzeszowParser implements BloodSuppliesParser {
     @SneakyThrows
     public Map<BloodGroup, BloodLevel> fetchData(String website) {
 
-        var iconBloods = Jsoup.connect(website)
+        Elements iconBloods = Jsoup.connect(website)
                 .get()
                 .body()
                 .getElementsByClass("iconBlood");
@@ -33,8 +34,8 @@ class RCKIKRzeszowParser implements BloodSuppliesParser {
         List<String> bloodLevels = iconBloods.eachAttr("style");
 
         for(int i = 0; i < bloodGroups.size(); i++ ) {
-            var group = BloodGroup.getBloodGroupByName(bloodGroups.get(i));
-            var level = bloodLevelMap.get(bloodLevels.get(i).replaceAll("background-position: 0 ", "").replace("px;", ""));
+            BloodGroup group = BloodGroup.getBloodGroupByName(bloodGroups.get(i));
+            BloodLevel level = bloodLevelMap.get(bloodLevels.get(i).replaceAll("background-position: 0 ", "").replace("px;", ""));
             data.put(group, level);
         }
 

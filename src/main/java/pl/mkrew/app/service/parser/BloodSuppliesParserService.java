@@ -11,7 +11,9 @@ import java.util.Map;
 public class BloodSuppliesParserService {
 
     private final Map<BloodSuppliesParserName, BloodSuppliesParser> parsers = Map.of(
-            BloodSuppliesParserName.RCKIK_RZESZOW, new RCKIKRzeszowParser()
+            BloodSuppliesParserName.RCKIK_BIALYSTOK, new RCKIKBialystokParser(),
+            BloodSuppliesParserName.RCKIK_RZESZOW, new RCKIKRzeszowParser(),
+            BloodSuppliesParserName.RCKIK_KRAKOW, new RCKIKKrakowParser()
     );
 
     public Map<BloodGroup, BloodLevel> fetchData(BloodSuppliesParserName parserName, String website) {
