@@ -3,7 +3,6 @@ package pl.mkrew.app.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -47,7 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     };
     // lista będzie powiększona w miarę potrzeb
     private  static  final String[] AUTH_USER_ROLE_LIST = {
-            "/v1/user"
+            "/v1/user",
+            "/v1/home"
     };
 
     @Override
@@ -63,10 +63,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .formLogin()
                 .loginPage("/v1/login").permitAll()
+                .successForwardUrl("/v1/home")
                 .and()
                 .logout(logout -> logout
                 .logoutUrl("/user/logout")
-                .logoutSuccessUrl("/home")
+                .logoutSuccessUrl("/v1/logout")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 );

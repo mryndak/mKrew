@@ -37,7 +37,7 @@ public class UserEntity {
     @ManyToOne
     private RCKiK rckik;
 
-    private boolean confirmationStatus = false;
+    private boolean confirmationStatus;
     @Column(unique = true)
     @Type(type="org.hibernate.type.UUIDCharType")
     private UUID confirmationId;
