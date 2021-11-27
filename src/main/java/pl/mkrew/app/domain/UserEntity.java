@@ -1,9 +1,6 @@
 package pl.mkrew.app.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -47,4 +44,14 @@ public class UserEntity {
 
     @OneToMany
     private List<Appointment> appointments = new ArrayList<>();
+
+    @OneToMany
+    private List<Questionnaire> questionnaires = new ArrayList<>();
+
+    @Column(name = "enabled")
+    private boolean enabled;
+
+    @Column(name = "reset_token")
+    private String resetToken;
+
 }

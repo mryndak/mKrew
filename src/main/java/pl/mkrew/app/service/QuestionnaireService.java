@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.mkrew.app.domain.Questionnaire;
 import pl.mkrew.app.dto.QuestionnaireDto;
+import pl.mkrew.app.mapper.QuestionnaireStructMapper;
 import pl.mkrew.app.repository.QuestionnaireRepository;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public class QuestionnaireService {
     @Deprecated
     private List<QuestionnaireDto> questionnaires = new ArrayList<>();
     private final QuestionnaireRepository questionnaireRepository;
+    private final QuestionnaireStructMapper questionnaireStructMapper;
+
 
     public List<QuestionnaireDto> getQuestionnaires() {
         return questionnaireRepository.findAll()
@@ -29,11 +32,11 @@ public class QuestionnaireService {
     }
 
     public void addQuestionnaire(QuestionnaireDto questionnaireDto) {
-        Questionnaire questionnaire = Questionnaire.builder()
-                .firstName(questionnaireDto.getFirstName())
-                .lastName(questionnaireDto.getLastName())
-                .build();
+        Questionnaire questionnaire = questionnaireStructMapper.mapToQuestionnaire(questionnaireDto);
+        questionnaire.setLastName(questionnaireDto.getLastName());
+        questionnaire.setFirstName(questionnaireDto.getFirstName());
         questionnaireRepository.save(questionnaire);
-        // TODO zapytać czy trzeba wszystkie pola z Dto i czy tak to ma wyglądać
+
+        // TODO dodać wszystkie pola, wyglądać to ma jak w addUser
     }
 }

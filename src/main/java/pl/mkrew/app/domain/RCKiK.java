@@ -29,4 +29,7 @@ public class RCKiK {
     @OneToMany
     private List<Appointment> appointments = new ArrayList<>();
 
+    @OneToMany
+    private List<Questionnaire> questionnaire = new ArrayList<>();
+
 }

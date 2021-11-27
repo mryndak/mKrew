@@ -1,8 +1,6 @@
 package pl.mkrew.app.web.controller;
 
-import com.sun.jdi.request.InvalidRequestStateException;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.hql.internal.QueryExecutionRequestException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.firewall.RequestRejectedException;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +13,6 @@ import pl.mkrew.app.web.request.ReservationRequest;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.Date;
 
 @RequiredArgsConstructor
 @RestController

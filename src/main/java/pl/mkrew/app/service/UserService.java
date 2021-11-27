@@ -63,7 +63,7 @@ public class UserService {
     }
 
     public void confirmUser(UUID confirmationId) {
-        Optional<UserEntity> user = userRepository.findByConfirmationId(confirmationId);
+        Optional<pl.mkrew.app.domain.UserEntity> user = userRepository.findByConfirmationId(confirmationId);
         user.ifPresent(u -> {
             u.setConfirmationStatus(true);
             userRepository.save(u);
@@ -71,14 +71,29 @@ public class UserService {
         user.orElseThrow();
     }
 
-    public void resetPasswordForUser(Long userId, String oldPassword, String newPassword) {
-        UserEntity user = userRepository.findById(userId)
+    public void changePasswordForUser(Long userId, String oldPassword, String newPassword) {
+        pl.mkrew.app.domain.UserEntity user = userRepository.findById(userId)
                 .get();
         if (encoder.matches(oldPassword, user.getPassword())) {
             user.setPassword(encoder.encode(newPassword));
             userRepository.save(user);
         } else {
-            throw new BadCredentialsException("Incorrect old password");
+            throw new BadCredentialsException("Błędne stare hasło");
         }
     }
+
+    public Optional findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+
+    public Optional findUserByResetToken(String resetToken) {
+        return userRepository.findByResetToken(resetToken);
+    }
+
+
+    public void save(UserEntity userEntity) {
+        userRepository.save(userEntity);
+    }
+
 }

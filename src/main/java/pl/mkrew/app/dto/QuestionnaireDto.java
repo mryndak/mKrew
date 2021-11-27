@@ -5,10 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.mkrew.app.domain.Symptoms;
-
-import javax.persistence.ElementCollection;
-import javax.persistence.FetchType;
-import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QuestionnaireDto {
-
+    //TODO zapytać czy trzeba dodać obiekty RCKiK i UserEntity
     private Long id;
     private String firstName;
     private String lastName;

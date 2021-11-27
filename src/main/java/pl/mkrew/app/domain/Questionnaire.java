@@ -24,6 +24,12 @@ public class Questionnaire {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ManyToOne
+    private UserEntity userEntity;
+
+    @ManyToOne
+    private RCKiK rckik;
+
     @OneToOne
     private Appointment appointmentId;
 

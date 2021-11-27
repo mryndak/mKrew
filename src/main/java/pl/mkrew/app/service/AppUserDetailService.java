@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import pl.mkrew.app.domain.UserEntity;
 import pl.mkrew.app.repository.UserRepository;
 
+import java.util.Optional;
+
 @Service
 public class AppUserDetailService implements UserDetailsService {
 
@@ -17,10 +19,9 @@ public class AppUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        final UserEntity userEntity = userRepository.findByEmail(email);
-        if (userEntity == null) {
-            throw new UsernameNotFoundException(email);
-        }
+        UserEntity userEntity = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException(email));
+
         UserDetails userDetails = User.withUsername(userEntity.getEmail())
                 .password(userEntity.getPassword())
                 .authorities("USER").build();
