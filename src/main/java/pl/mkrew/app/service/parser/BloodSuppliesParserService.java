@@ -15,6 +15,8 @@ public class BloodSuppliesParserService {
             BloodSuppliesParserName.RCKIK_BYDGOSZCZ, new RCKIKBydgoszczParser(),
             BloodSuppliesParserName.RCKIK_GDANSK, new RCKIKGdanskParser(),
             BloodSuppliesParserName.RCKIK_KALISZ, new RCKIKKaliszParser(),
+            BloodSuppliesParserName.RCKIK_KATOWICE, new RCKIKKatowiceParser(),
+            BloodSuppliesParserName.RCKIK_KIELCE, new RCKIKKielceParser(),
             BloodSuppliesParserName.RCKIK_KRAKOW, new RCKIKKrakowParser(),
             BloodSuppliesParserName.RCKIK_RZESZOW, new RCKIKRzeszowParser()
 
