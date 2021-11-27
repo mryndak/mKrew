@@ -9,3 +9,8 @@
 * przeglądąc zapasy krwi i prognozy zapotrzebowania na daną grupę krwi, dzięki czemu będziesz wiedział kiedy Twoja krew będzie najbardziej potrzebna
 * odbierać powiadomienia o wydarzeniach czy ważnych komunikatach z RCKiK
 * zaprosić znajomych do aplikacji, przekazująć ideę oddawania krwi dalej w świat!
+* baza danych: 
+* url: jdbc:mysql://127.0.0.1:3307/mkrew
+* username: root
+* password: root
+* image_wrapper.childNodesOfType(Element.class).stream().flatMap(p -> p.getElementsByAttributeValueContaining("src", ".png").stream()).map(v -> v.attributes()).collect(Collectors.toList())

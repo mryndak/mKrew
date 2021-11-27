@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.andreinc.jbvext.annotations.date.IsDate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -22,9 +20,14 @@ public class BloodSupplies {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
 
-    private LocalDate date;
-    private Double value;
+    private LocalDate lastUpdated;
+
     @Enumerated(EnumType.STRING)
     private BloodGroup bloodGroup;
 
+    @Enumerated(EnumType.STRING)
+    private BloodLevel bloodLevel;
+
+    @ManyToOne
+    private RCKiK rckik;
 }
