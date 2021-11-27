@@ -1,30 +1,15 @@
 package pl.mkrew.app.mapper;
 
-import org.springframework.stereotype.Service;
+import org.mapstruct.Mapper;
 import pl.mkrew.app.domain.Appointment;
 import pl.mkrew.app.dto.AppointmentDto;
 
-@Service
-public class AppointmentMapper {
+@Mapper(componentModel= "spring")
+public interface AppointmentMapper {
 
-    public AppointmentDto mapToDto(Appointment appointment) {
-        return AppointmentDto.builder()
-                .id(appointment.getId())
-                .date(appointment.getDate())
-                .time(appointment.getTime())
-                .rckikId(appointment.getRckik().getId())
-                .userId(appointment.getUser().getId())
-                .build();
-    }
+    abstract AppointmentDto mapToDto(Appointment appointment);
 
-    public Appointment mapToAppointment(AppointmentDto appointmentDto) {
-        return Appointment.builder()
-                .id(appointmentDto.getId())
-                .date(appointmentDto.getDate())
-                .time(appointmentDto.getTime())
-                .rckik(appointmentDto.getRckikId())
-                .rckik(appointmentDto.)
-                .build();
-    }
+    abstract Appointment mapToAppointment(AppointmentDto appointmentDto);
+
 
 }
