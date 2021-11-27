@@ -15,6 +15,7 @@ import java.time.LocalTime;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -57,7 +58,15 @@ public class AppointmentService {
 
         appointment.setAvailable(false);
         appointment.setUser(user);
+        appointmentRepository.save(appointment);
+    }
 
+    public void deleteReservation(Long reservationId) {
+        Appointment appointment = appointmentRepository.findById(reservationId).orElseThrow();
+
+        appointment.setAvailable(true);
+        appointment.setUser(null);
+        appointmentRepository.save(appointment);
     }
 }
 
