@@ -44,7 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/v1/user/registration",
             "/v1/appointment/**",
             "/v1/forgot",
-            "/v1/reset"
+            "/v1/reset",
+            "/v1/user/**"
     };
     // lista będzie powiększona w miarę potrzeb
     private  static  final String[] AUTH_USER_ROLE_LIST = {

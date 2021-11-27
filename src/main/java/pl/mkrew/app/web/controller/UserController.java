@@ -3,10 +3,7 @@ package pl.mkrew.app.web.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.mkrew.app.dto.UserDto;
 import pl.mkrew.app.response.GetUserDetails;
 import pl.mkrew.app.service.UserService;
@@ -47,5 +44,12 @@ public class UserController {
 //    private void home(){
 //        System.out.println("home");
 //    }
+
+    @DeleteMapping("/{id}")
+    public void disableUser(@PathVariable("id") Long userId) {
+
+        userService.deleteUser(userId);
+    }
+
 
 }

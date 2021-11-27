@@ -96,4 +96,15 @@ public class UserService {
         userRepository.save(userEntity);
     }
 
+    public void deleteUser(Long userId) {
+        Optional<pl.mkrew.app.domain.UserEntity> user = userRepository.findById(userId);
+        user.ifPresent(u -> {
+            u.setConfirmationStatus(false);
+            u.setEnabled(false);
+            u.setRoles(null);
+            userRepository.save(u);
+        });
+        user.orElseThrow();
+
+    }
 }
