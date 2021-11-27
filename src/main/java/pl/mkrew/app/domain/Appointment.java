@@ -32,4 +32,6 @@ public class Appointment {
 
     @ManyToOne
     private UserEntity user;
+    @OneToOne
+    private Questionnaire questionnaire;
 }
