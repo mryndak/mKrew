@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import pl.mkrew.app.util.BloodSuppliesParserName;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
@@ -26,5 +28,11 @@ public class RCKiK {
     private String website;
     @Enumerated(EnumType.STRING)
     private BloodSuppliesParserName parserName;
+
+    @OneToMany
+    private List<Appointment> appointments = new ArrayList<>();
+
+    @OneToMany
+    private List<Questionnaire> questionnaire = new ArrayList<>();
 
 }

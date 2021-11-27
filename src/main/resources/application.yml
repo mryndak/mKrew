@@ -21,8 +21,6 @@ spring:
 
 info:
   app:
-    name: @project.name@
-    version: @project.version@
     profile: ${spring.profiles.active}
   serverInfo:
     os: ${os.name}

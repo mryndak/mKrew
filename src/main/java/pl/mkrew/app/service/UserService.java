@@ -2,6 +2,7 @@ package pl.mkrew.app.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -62,11 +63,48 @@ public class UserService {
     }
 
     public void confirmUser(UUID confirmationId) {
-        Optional<UserEntity> user = userRepository.findByConfirmationId(confirmationId);
+        Optional<pl.mkrew.app.domain.UserEntity> user = userRepository.findByConfirmationId(confirmationId);
         user.ifPresent(u -> {
             u.setConfirmationStatus(true);
             userRepository.save(u);
         });
         user.orElseThrow();
+    }
+
+    public void changePasswordForUser(Long userId, String oldPassword, String newPassword) {
+        pl.mkrew.app.domain.UserEntity user = userRepository.findById(userId)
+                .get();
+        if (encoder.matches(oldPassword, user.getPassword())) {
+            user.setPassword(encoder.encode(newPassword));
+            userRepository.save(user);
+        } else {
+            throw new BadCredentialsException("Błędne stare hasło");
+        }
+    }
+
+    public Optional findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+
+    public Optional findUserByResetToken(String resetToken) {
+        return userRepository.findByResetToken(resetToken);
+    }
+
+
+    public void save(UserEntity userEntity) {
+        userRepository.save(userEntity);
+    }
+
+    public void deleteUser(Long userId) {
+        Optional<pl.mkrew.app.domain.UserEntity> user = userRepository.findById(userId);
+        user.ifPresent(u -> {
+            u.setConfirmationStatus(false);
+            u.setEnabled(false);
+            u.setRoles(null);
+            userRepository.save(u);
+        });
+        user.orElseThrow();
+
     }
 }

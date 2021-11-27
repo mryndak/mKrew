@@ -2,6 +2,7 @@ package pl.mkrew.app.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -22,5 +23,14 @@ public class EmailService {
         mimeMessageHelper.setSubject(subject);
         mimeMessageHelper.setText(message);
         javaMailSender.send(mimeMessage);
+    }
+
+    public void sendMailToUser(String userEmail, String subject, String body)
+    {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(userEmail);
+        message.setSubject(subject);
+        message.setText(body);
+        javaMailSender.send(message);
     }
 }

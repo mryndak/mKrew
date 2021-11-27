@@ -1,16 +1,11 @@
 package pl.mkrew.app.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Data
 @Builder
@@ -39,13 +34,24 @@ public class UserEntity {
     @ManyToOne
     private RCKiK rckik;
 
-    private boolean confirmationStatus = false;
+    private boolean confirmationStatus;
     @Column(unique = true)
     @Type(type="org.hibernate.type.UUIDCharType")
     private UUID confirmationId;
     private LocalDateTime validTo;
-
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles = new HashSet<>();
+
+    @OneToMany
+    private List<Appointment> appointments = new ArrayList<>();
+
+    @OneToMany
+    private List<Questionnaire> questionnaires = new ArrayList<>();
+
+    @Column(name = "enabled")
+    private boolean enabled;
+
+    @Column(name = "reset_token")
+    private String resetToken;
 
 }
