@@ -1,4 +1,4 @@
-package pl.mkrew.app.controller;
+package pl.mkrew.app.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,9 +1,6 @@
 package pl.mkrew.app.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -37,7 +34,7 @@ public class UserEntity {
     @ManyToOne
     private RCKiK rckik;
 
-    private boolean confirmationStatus = false;
+    private boolean confirmationStatus;
     @Column(unique = true)
     @Type(type="org.hibernate.type.UUIDCharType")
     private UUID confirmationId;
@@ -47,4 +44,14 @@ public class UserEntity {
 
     @OneToMany
     private List<Appointment> appointments = new ArrayList<>();
+
+    @OneToMany
+    private List<Questionnaire> questionnaires = new ArrayList<>();
+
+    @Column(name = "enabled")
+    private boolean enabled;
+
+    @Column(name = "reset_token")
+    private String resetToken;
+
 }

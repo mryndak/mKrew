@@ -37,15 +37,15 @@ public class UserController {
                 .orElseGet(() -> ResponseEntity.unprocessableEntity().build());
     }
 
-    @GetMapping("/v1/user/confirmation/{confirmationId}")
+    @GetMapping("/confirmation/{confirmationId}")
     public void confirmEmail(@PathVariable UUID confirmationId) {
         userService.confirmUser(confirmationId);
         System.out.println("Potwierdzony");
     }
 
-    @GetMapping("/v1/home")
-    private void home(){
-        System.out.println("home");
-    }
+//    @GetMapping("/home")
+//    private void home(){
+//        System.out.println("home");
+//    }
 
 }

@@ -3,7 +3,6 @@ package pl.mkrew.app.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -43,17 +42,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String[] ANONYMOUS_LIST = {
             "/v1/user/confirmation/**",
             "/v1/user/registration",
-            "/v1/appointment/**"
+            "/v1/appointment/**",
+            "/v1/forgot",
+            "/v1/reset"
     };
     // lista będzie powiększona w miarę potrzeb
     private  static  final String[] AUTH_USER_ROLE_LIST = {
-            "/reservarion/{reservationId}",
-            "/v1/user"
-    };
-
-    private  static  final String[] AUTH_ADMIN_ROLE_LIST = {
-            "/reservarion/{reservationId}",
-            "/v1/user"
+            "/v1/user",
+            "/v1/home"
     };
 
     @Override
@@ -63,17 +59,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(AUTH_WHITELIST).permitAll()
                 .antMatchers(ANONYMOUS_LIST).permitAll()
                 .antMatchers(AUTH_USER_ROLE_LIST).hasRole("USER")
-                .antMatchers(AUTH_ADMIN_ROLE_LIST).hasRole("ADMIN")
                 .antMatchers("/resources/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
                 .formLogin()
                 .loginPage("/v1/login").permitAll()
+                .successForwardUrl("/v1/home")
                 .and()
                 .logout(logout -> logout
                 .logoutUrl("/user/logout")
-                .logoutSuccessUrl("/home")
+                .logoutSuccessUrl("/v1/logout")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 );
