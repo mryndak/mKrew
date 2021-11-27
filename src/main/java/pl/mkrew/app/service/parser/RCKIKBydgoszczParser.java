@@ -11,32 +11,34 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class RCKIKKrakowParser implements BloodSuppliesParser{
+public class RCKIKBydgoszczParser implements BloodSuppliesParser{
 
     Map<String, BloodLevel> bloodLevelMap = Map.of(
-            "0", BloodLevel.L_0,
-            "25", BloodLevel.L_25,
-            "50", BloodLevel.L_50,
-            "75", BloodLevel.L_75,
-            "100", BloodLevel.L_100
+            ": brak", BloodLevel.L_0,
+            ": bardzo potrzebujemy", BloodLevel.L_25,
+            ": umiarkowane zapotrzebowanie", BloodLevel.L_50,
+            ": mamy zapasy", BloodLevel.L_75,
+            ": stop", BloodLevel.L_100
     );
 
     @Override
     @SneakyThrows
     public Map<BloodGroup, BloodLevel> fetchData(String website) {
 
-        Elements columnOneFourth = Jsoup.connect(website)
+        Elements kropelki = Jsoup.connect(website)
                 .get()
                 .body()
-                .getElementsByClass("column one-fourth");
+                .getElementsByClass("kropelki").select("li");
 
         Map<BloodGroup, BloodLevel> data = new LinkedHashMap<>();
-        List<String> bloodGroups = columnOneFourth.eachText();
-        List<String> bloodLevels = columnOneFourth.select("img[src$=.png]")
-                .eachAttr("src")
+        List<String> bloodGroups = kropelki.eachText()
                 .stream()
-                .map(v -> v.replace("https://rckik.krakow.pl/wp-content/uploads/2016/11/x", ""))
-                .map(v -> v.substring(0, v.indexOf(".png")))
+                .map(v -> v.substring(0, v.indexOf(":")))
+                .collect(Collectors.toList());
+
+        List<String> bloodLevels = kropelki.eachText()
+                .stream()
+                .map(v -> v.substring(v.indexOf(":")))
                 .collect(Collectors.toList());
 
         for(int i = 0; i < bloodGroups.size(); i++ ) {

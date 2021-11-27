@@ -4,14 +4,14 @@ import java.util.Arrays;
 
 public enum BloodGroup {
 
-    ZERO_RH_p("0Rh+"),
-    ZERO_RH_m("0Rh-"),
-    A_RH_p("ARh+"),
-    A_RH_m("ARh-"),
-    B_RH_p("BRh+"),
-    B_RH_m("BRh-"),
-    AB_RH_p("ABRh+"),
-    AB_RH_m("ABRh-");
+    ZERO_RH_p("0RH+"),
+    ZERO_RH_m("0RH-"),
+    A_RH_p("ARH+"),
+    A_RH_m("ARH-"),
+    B_RH_p("BRH+"),
+    B_RH_m("BRH-"),
+    AB_RH_p("ABRH+"),
+    AB_RH_m("ABRH-");
 
     private final String value;
 
@@ -24,8 +24,10 @@ public enum BloodGroup {
     }
 
     public static BloodGroup getBloodGroupByName(String name) {
-        String parsedName = name.trim().replace("D", "")
+        String parsedName = name.trim()
+                .replace("D", "")
                 .replace("–", "-")
+                .toUpperCase()
                 .replaceAll(" ", "");
         return Arrays.stream(BloodGroup.values()).filter(p -> parsedName.equals(p.getValue()))
                 .findFirst()

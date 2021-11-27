@@ -48,7 +48,7 @@ public class RCKIKBialystokParser implements BloodSuppliesParser{
                 .forEach(bloodGroup -> {
                     data.put(
                             BloodGroup.getBloodGroupByName(bloodGroup),
-                            BloodLevel.L_0
+                            BloodLevel.L_25
                     );
                 });
 

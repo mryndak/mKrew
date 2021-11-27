@@ -11,35 +11,44 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class RCKIKKrakowParser implements BloodSuppliesParser{
+public class RCKIKGdanskParser implements BloodSuppliesParser{
 
     Map<String, BloodLevel> bloodLevelMap = Map.of(
-            "0", BloodLevel.L_0,
-            "25", BloodLevel.L_25,
-            "50", BloodLevel.L_50,
-            "75", BloodLevel.L_75,
-            "100", BloodLevel.L_100
+            "5", BloodLevel.L_0,
+            "4", BloodLevel.L_25,
+            "3", BloodLevel.L_50,
+            "2", BloodLevel.L_75,
+            "1", BloodLevel.L_100
     );
 
     @Override
     @SneakyThrows
     public Map<BloodGroup, BloodLevel> fetchData(String website) {
 
-        Elements columnOneFourth = Jsoup.connect(website)
+        Elements title = Jsoup.connect(website)
                 .get()
                 .body()
-                .getElementsByClass("column one-fourth");
+                .getElementsByClass("title");
+
+        Elements ikon = Jsoup.connect(website)
+                .get()
+                .body()
+                .getElementsByClass("ikon");
 
         Map<BloodGroup, BloodLevel> data = new LinkedHashMap<>();
-        List<String> bloodGroups = columnOneFourth.eachText();
-        List<String> bloodLevels = columnOneFourth.select("img[src$=.png]")
+        List<String> bloodGroups = title.eachText()
+                .stream()
+                .filter(o -> o.contains("RhD"))
+                .collect(Collectors.toList());
+        List<String> bloodLevels = ikon.select("img[src$=.png]")
                 .eachAttr("src")
                 .stream()
-                .map(v -> v.replace("https://rckik.krakow.pl/wp-content/uploads/2016/11/x", ""))
+                .map(v -> v.replace("images/blood_", ""))
                 .map(v -> v.substring(0, v.indexOf(".png")))
+                .filter(o -> o.length() < 2)
                 .collect(Collectors.toList());
 
-        for(int i = 0; i < bloodGroups.size(); i++ ) {
+        for (int i = 0; i < bloodGroups.size(); i++) {
             BloodGroup group = BloodGroup.getBloodGroupByName(bloodGroups.get(i));
             BloodLevel level = bloodLevelMap.get(bloodLevels.get(i));
             data.put(group, level);

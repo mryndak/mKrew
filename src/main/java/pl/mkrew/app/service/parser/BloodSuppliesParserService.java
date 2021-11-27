@@ -12,8 +12,12 @@ public class BloodSuppliesParserService {
 
     private final Map<BloodSuppliesParserName, BloodSuppliesParser> parsers = Map.of(
             BloodSuppliesParserName.RCKIK_BIALYSTOK, new RCKIKBialystokParser(),
-            BloodSuppliesParserName.RCKIK_RZESZOW, new RCKIKRzeszowParser(),
-            BloodSuppliesParserName.RCKIK_KRAKOW, new RCKIKKrakowParser()
+            BloodSuppliesParserName.RCKIK_BYDGOSZCZ, new RCKIKBydgoszczParser(),
+            BloodSuppliesParserName.RCKIK_GDANSK, new RCKIKGdanskParser(),
+            BloodSuppliesParserName.RCKIK_KALISZ, new RCKIKKaliszParser(),
+            BloodSuppliesParserName.RCKIK_KRAKOW, new RCKIKKrakowParser(),
+            BloodSuppliesParserName.RCKIK_RZESZOW, new RCKIKRzeszowParser()
+
     );
 
     public Map<BloodGroup, BloodLevel> fetchData(BloodSuppliesParserName parserName, String website) {

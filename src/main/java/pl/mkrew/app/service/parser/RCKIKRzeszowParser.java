@@ -35,7 +35,8 @@ class RCKIKRzeszowParser implements BloodSuppliesParser {
 
         for(int i = 0; i < bloodGroups.size(); i++ ) {
             BloodGroup group = BloodGroup.getBloodGroupByName(bloodGroups.get(i));
-            BloodLevel level = bloodLevelMap.get(bloodLevels.get(i).replaceAll("background-position: 0 ", "").replace("px;", ""));
+            BloodLevel level = bloodLevelMap.get(bloodLevels.get(i).replaceAll("background-position: 0 ", "")
+                    .replace("px;", ""));
             data.put(group, level);
         }
 
