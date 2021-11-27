@@ -30,11 +30,9 @@ public class AppointmentController {
     private void validate(CreateScheduleAppointmentRequest request) {
         if (request.getEndDate().isBefore(request.getStartDate())) {
             throw new RequestRejectedException("Appointment end date is before start date");
-        }
-       else if (request.getStartDate().isAfter(request.getEndDate())) {
+        } else if (request.getStartDate().isAfter(request.getEndDate())) {
             throw new RequestRejectedException("Appointment start date is after end date");
-        }
-       else if (request.getStartDate().isBefore(LocalDate.now())) {
+        } else if (request.getStartDate().isBefore(LocalDate.now())) {
             throw new RequestRejectedException("Appointment start date is before today's date");
         }
     }

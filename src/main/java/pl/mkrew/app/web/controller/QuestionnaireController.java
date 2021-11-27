@@ -24,7 +24,7 @@ public class QuestionnaireController {
     }
 
     @PostMapping
-    public void  addQuestionnaire(@RequestBody QuestionnaireDto questionnaireDto) {
+    public void addQuestionnaire(@RequestBody QuestionnaireDto questionnaireDto) {
         questionnaireService.addQuestionnaire(questionnaireDto);
     }
 

@@ -18,7 +18,8 @@ public class UserMapper {
                 .login(user.getLogin())
                 .build();
     }
-    public UserEntity mapToUser(UserDto userDTO){
+
+    public UserEntity mapToUser(UserDto userDTO) {
         return UserEntity.builder()
                 .name(userDTO.getName())
                 .surname(userDTO.getSurname())

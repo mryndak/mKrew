@@ -61,7 +61,7 @@ public class PasswordController {
 
         modelAndView.setViewName("forgotPassword");
         return modelAndView;
-        }
+    }
 
     @RequestMapping(value = "/v1/reset", method = RequestMethod.POST)
     public ModelAndView setNewPassword(ModelAndView modelAndView, @RequestParam Map<String, String> requestParams, RedirectAttributes redir) {

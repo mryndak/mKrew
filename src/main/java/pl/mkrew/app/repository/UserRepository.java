@@ -11,10 +11,14 @@ import java.util.UUID;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-    boolean existsByEmailOrLogin (String login, String email);
-    Optional<UserEntity> findByConfirmationId (UUID confirmationId);
-    Optional<UserEntity> findUserByLogin (String login);
+    boolean existsByEmailOrLogin(String login, String email);
+
+    Optional<UserEntity> findByConfirmationId(UUID confirmationId);
+
+    Optional<UserEntity> findUserByLogin(String login);
+
     Optional<UserEntity> findByEmail(String email);
+
     Optional<UserEntity> findByResetToken(String resetToken);
 
 }

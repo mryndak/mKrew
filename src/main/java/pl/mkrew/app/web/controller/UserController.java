@@ -32,7 +32,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<GetUserDetails> getUsersDetails(@PathVariable Long id) {
-       Optional<UserDto> user = userService.getUser(id);
+        Optional<UserDto> user = userService.getUser(id);
         return user.map(userDto -> ResponseEntity.ok(new GetUserDetails(userDto)))
                 .orElseGet(() -> ResponseEntity.unprocessableEntity().build());
     }

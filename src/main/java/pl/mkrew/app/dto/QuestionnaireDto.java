@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.mkrew.app.domain.Symptoms;
+
 import java.util.HashSet;
 import java.util.Set;
 

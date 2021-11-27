@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/v1/reset"
     };
     // lista będzie powiększona w miarę potrzeb
-    private  static  final String[] AUTH_USER_ROLE_LIST = {
+    private static final String[] AUTH_USER_ROLE_LIST = {
             "/v1/user",
             "/v1/home"
     };
@@ -68,10 +68,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successForwardUrl("/v1/home")
                 .and()
                 .logout(logout -> logout
-                .logoutUrl("/user/logout")
-                .logoutSuccessUrl("/v1/logout")
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
+                        .logoutUrl("/user/logout")
+                        .logoutSuccessUrl("/v1/logout")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
                 );
     }
 

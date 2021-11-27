@@ -36,7 +36,7 @@ public class UserEntity {
 
     private boolean confirmationStatus;
     @Column(unique = true)
-    @Type(type="org.hibernate.type.UUIDCharType")
+    @Type(type = "org.hibernate.type.UUIDCharType")
     private UUID confirmationId;
     private LocalDateTime validTo;
     @ElementCollection(fetch = FetchType.EAGER)

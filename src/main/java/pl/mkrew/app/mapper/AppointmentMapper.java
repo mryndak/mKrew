@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import pl.mkrew.app.domain.Appointment;
 import pl.mkrew.app.dto.AppointmentDto;
 
-@Mapper(componentModel= "spring")
+@Mapper(componentModel = "spring")
 public interface AppointmentMapper {
 
     abstract AppointmentDto mapToDto(Appointment appointment);
