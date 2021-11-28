@@ -68,5 +68,11 @@ public class AppointmentService {
         appointment.setUser(null);
         appointmentRepository.save(appointment);
     }
+    public void confirmVisit (Long reservationId) {
+        Appointment appointment = appointmentRepository.findById(reservationId).orElseThrow();
+
+        appointment.setConfirmVisit(true);
+        appointmentRepository.save(appointment);
+    }
 }
 

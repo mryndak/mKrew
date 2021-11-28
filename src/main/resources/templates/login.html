@@ -46,7 +46,7 @@
 </head>
 <body>
 <center> <h1> Zaloguj się do mKrew </h1> </center>
-<form name="f" th:action="@{/v1/home}" method="post">
+<form name="f" th:action="@{/login}" method="post">
     <fieldset>
         <div class="container">
             <label>Login : </label>
@@ -62,7 +62,7 @@
             <button type="submit">Zaloguj</button>
     <!--        <input type="checkbox" checked="checked"> Zapamiętaj mnie-->
             <button type="button" class="cancelbtn"> Anuluj</button>
-            Zapomiałeś hasło? <a href="/v1/user/resetpassword"> Reset hasła </a>
+            Zapomiałeś hasło? <a href="/v1/user/reset"> Reset hasła </a>
         </div>
     </fieldset>
 </form>
