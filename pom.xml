@@ -75,6 +75,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.14.3</version>
+		</dependency>
+		<dependency>
 			<groupId>net.andreinc</groupId>
 			<artifactId>jbve</artifactId>
 			<version>0.0.12</version>
@@ -111,8 +116,17 @@
 			<artifactId>h2</artifactId>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>com.codeborne</groupId>
+			<artifactId>phantomjsdriver</artifactId>
+			<version>1.5.0</version>
+		</dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<repositories>
 		<repository>

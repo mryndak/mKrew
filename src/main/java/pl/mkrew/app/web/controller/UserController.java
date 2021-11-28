@@ -47,8 +47,16 @@ public class UserController {
         userService.changePersonalData(userId, request.getUserDto());
     }
 
+
     @PostMapping("/change/{userId}")
     private void changeUserPassword(@PathVariable("userId")Long userId, String oldPassword, String newPassword, @RequestBody ChangePasswordRequest request) {
         userService.changePasswordForUser(userId, oldPassword, newPassword, request.getUserDto());
     }
+
+    @DeleteMapping("/{id}")
+    public void disableUser(@PathVariable("id") Long userId) {
+
+        userService.deleteUser(userId);
+    }
+
 }
