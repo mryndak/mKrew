@@ -6,6 +6,7 @@ import pl.mkrew.app.domain.BloodLevel;
 import pl.mkrew.app.util.BloodSuppliesParserName;
 
 import java.util.Map;
+import java.util.concurrent.Executors;
 
 @Service
 public class BloodSuppliesParserService {
@@ -19,7 +20,6 @@ public class BloodSuppliesParserService {
             BloodSuppliesParserName.RCKIK_KIELCE, new RCKIKKielceParser(),
             BloodSuppliesParserName.RCKIK_KRAKOW, new RCKIKKrakowParser(),
             BloodSuppliesParserName.RCKIK_RZESZOW, new RCKIKRzeszowParser()
-
     );
 
     public Map<BloodGroup, BloodLevel> fetchData(BloodSuppliesParserName parserName, String website) {

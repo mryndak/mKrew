@@ -1,6 +1,5 @@
 package pl.mkrew.app.web.controller.request;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
 import net.andreinc.jbvext.annotations.str.Password;
 

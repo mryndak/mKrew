@@ -8,8 +8,9 @@ import pl.mkrew.app.domain.BloodGroup;
 import pl.mkrew.app.domain.BloodLevel;
 
 import java.util.*;
+import java.util.concurrent.Executors;
 
-public class RCKIKBialystokParser implements BloodSuppliesParser{
+public class RCKIKBialystokParser implements BloodSuppliesParser {
 
     @Override
     @SneakyThrows

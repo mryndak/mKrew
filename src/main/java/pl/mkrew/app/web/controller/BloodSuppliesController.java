@@ -3,6 +3,7 @@ package pl.mkrew.app.web.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.mkrew.app.dto.BloodSuppliesDto;
 import pl.mkrew.app.service.BloodSuppliesService;
 
 @RequiredArgsConstructor
@@ -16,5 +17,10 @@ public class BloodSuppliesController {
     public ResponseEntity<Void> refreshBloodSupplies() {
         bloodSuppliesService.refresh();
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping
+    public void addBloodLevel(@RequestBody BloodSuppliesDto bloodSuppliesDto) {
+        bloodSuppliesService.addBloodLevel(bloodSuppliesDto);
     }
 }
