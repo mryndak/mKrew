@@ -71,8 +71,8 @@ public class UserService {
         user.orElseThrow();
     }
 
-    public void changePasswordForUser(Long userId, String oldPassword, String newPassword) {
-        pl.mkrew.app.domain.UserEntity user = userRepository.findById(userId)
+    public void changePasswordForUser(Long userId, String oldPassword, String newPassword, UserDto userDto) {
+        UserEntity user = userRepository.findById(userId)
                 .get();
         if (encoder.matches(oldPassword, user.getPassword())) {
             user.setPassword(encoder.encode(newPassword));
@@ -80,6 +80,19 @@ public class UserService {
         } else {
             throw new BadCredentialsException("Błędne stare hasło");
         }
+    }
+
+    public void changePersonalData(Long userId,UserDto userDto) {
+        UserEntity user = userRepository.findById(userId)
+                .orElseThrow();
+        user.setSurname(userDto.getSurname());
+        user.setLogin(userDto.getLogin());
+        user.setEmail(userDto.getEmail());
+        user.setName(userDto.getName());
+        user.setPhoneNumber(userDto.getPhoneNumber());
+        user.setRckik(userDto.getRckik());
+        userRepository.save(user);
+
     }
 
     public Optional findUserByEmail(String email) {
