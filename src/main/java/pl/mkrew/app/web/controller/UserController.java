@@ -40,10 +40,10 @@ public class UserController {
         System.out.println("Potwierdzony");
     }
 
-//    @GetMapping("/home")
-//    private void home(){
-//        System.out.println("home");
-//    }
+    @GetMapping("/home")
+    private void home(){
+        System.out.println("home");
+    }
 
     @DeleteMapping("/{id}")
     public void disableUser(@PathVariable("id") Long userId) {

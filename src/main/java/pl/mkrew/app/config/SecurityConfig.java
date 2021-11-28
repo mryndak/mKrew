@@ -67,6 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .formLogin()
                 .loginPage("/v1/login").permitAll()
+                .loginProcessingUrl("/v1/login")
                 .successForwardUrl("/v1/home")
                 .and()
                 .logout(logout -> logout
@@ -95,4 +96,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
+
 }
