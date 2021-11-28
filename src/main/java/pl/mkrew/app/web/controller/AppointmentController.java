@@ -2,6 +2,7 @@ package pl.mkrew.app.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.web.firewall.RequestRejectedException;
 import org.springframework.web.bind.annotation.*;
 import pl.mkrew.app.service.AppointmentService;
@@ -46,6 +47,12 @@ public class AppointmentController {
     @DeleteMapping("/reservarion/{reservationId}")
     public void removeReservation(@PathVariable("reservationId") Long reservationId) {
         appointmentService.deleteReservation(reservationId);
+    }
+
+    @DeleteMapping("/reservarion/delete/{reservationId}")
+    @Secured("ROLE_ADMIN")
+    public void removeReservationAsAdmin(@PathVariable("reservationId") Long reservationId) {
+        appointmentService.deleteReservationAsAdmin(reservationId);
     }
 
 }

@@ -68,5 +68,13 @@ public class AppointmentService {
         appointment.setUser(null);
         appointmentRepository.save(appointment);
     }
+
+    public void deleteReservationAsAdmin(Long reservationId) {
+        Appointment appointment = appointmentRepository.findById(reservationId).orElseThrow();
+
+        appointment.setAvailable(true);
+        appointment.setUser(null);
+        appointmentRepository.save(appointment);
+    }
 }
 
