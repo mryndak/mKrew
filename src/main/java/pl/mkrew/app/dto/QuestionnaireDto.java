@@ -20,7 +20,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QuestionnaireDto {
-    //TODO zapytać czy trzeba dodać obiekty RCKiK i UserEntity
+
     private Long id;
     private String firstName;
     private String lastName;

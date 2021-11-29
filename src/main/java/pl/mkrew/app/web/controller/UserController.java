@@ -59,4 +59,9 @@ public class UserController {
         userService.deleteUser(userId);
     }
 
+    @GetMapping("/data/{userId}")
+    public void getUserData(@PathVariable("userId") Long userId) {
+        userService.getAllUserPersonalData(userId);
+    }
+
 }

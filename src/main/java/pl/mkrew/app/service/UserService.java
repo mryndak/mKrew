@@ -63,7 +63,7 @@ public class UserService {
     }
 
     public void confirmUser(UUID confirmationId) {
-        Optional<pl.mkrew.app.domain.UserEntity> user = userRepository.findByConfirmationId(confirmationId);
+        Optional<UserEntity> user = userRepository.findByConfirmationId(confirmationId);
         user.ifPresent(u -> {
             u.setConfirmationStatus(true);
             userRepository.save(u);
@@ -72,7 +72,8 @@ public class UserService {
     }
 
     public void changePasswordForUser(Long userId, String oldPassword, String newPassword, UserDto userDto) {
-        UserEntity user = userRepository.findById(userId)
+        UserEntity user = userMapper.mapToUser(userDto);
+        user = userRepository.findById(userId)
                 .get();
         if (encoder.matches(oldPassword, user.getPassword())) {
             user.setPassword(encoder.encode(newPassword));
@@ -110,7 +111,7 @@ public class UserService {
     }
 
     public void deleteUser(Long userId) {
-        Optional<pl.mkrew.app.domain.UserEntity> user = userRepository.findById(userId);
+        Optional<UserEntity> user = userRepository.findById(userId);
         user.ifPresent(u -> {
             u.setConfirmationStatus(false);
             u.setEnabled(false);
@@ -118,6 +119,20 @@ public class UserService {
             userRepository.save(u);
         });
         user.orElseThrow();
+
+    }
+    public void getAllUserPersonalData(Long userId){
+        Optional<UserEntity> user = userRepository.findById(userId);
+        user.ifPresent( u-> {
+            u.getName();
+            u.getSurname();
+            u.getEmail();
+            u.getLogin();
+            u.getPhoneNumber();
+            u.getRckik();
+            userRepository.toString();
+        });
+
 
     }
 }
