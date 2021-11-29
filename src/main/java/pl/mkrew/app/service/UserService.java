@@ -72,9 +72,8 @@ public class UserService {
     }
 
     public void changePasswordForUser(Long userId, String oldPassword, String newPassword, UserDto userDto) {
-        UserEntity user = userMapper.mapToUser(userDto);
-        user = userRepository.findById(userId)
-                .get();
+        UserEntity user = userRepository.findById(userId)
+                .orElseThrow();
         if (encoder.matches(oldPassword, user.getPassword())) {
             user.setPassword(encoder.encode(newPassword));
             userRepository.save(user);
@@ -92,6 +91,8 @@ public class UserService {
         user.setName(userDto.getName());
         user.setPhoneNumber(userDto.getPhoneNumber());
         user.setRckik(userDto.getRckik());
+        user.setSendNofificationViaEmail(true);
+        user.setSendNofificationViaSms(true);
         userRepository.save(user);
 
     }
@@ -132,7 +133,5 @@ public class UserService {
             u.getRckik();
             userRepository.toString();
         });
-
-
     }
 }

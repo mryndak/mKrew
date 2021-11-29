@@ -30,6 +30,8 @@ public class UserEntity {
     private String phoneNumber;
     @Enumerated(EnumType.STRING)
     private BloodGroup bloodGroup;
+    private boolean sendNofificationViaEmail;
+    private boolean sendNofificationViaSms;
 
     @ManyToOne
     private RCKiK rckik;
