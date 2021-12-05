@@ -26,12 +26,15 @@ public class Appointment {
     @NotNull
     private LocalTime time;
     private boolean available;
+    private boolean confirmVisit;
 
     @ManyToOne
     private RCKiK rckik;
 
     @ManyToOne
     private UserEntity user;
+
     @OneToOne
     private Questionnaire questionnaire;
+
 }

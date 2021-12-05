@@ -62,4 +62,9 @@ public class AppointmentController {
         appointmentService.deleteReservationAsAdmin(reservationId);
     }
 
+    @PostMapping("/confirmationVisit/{appointmentId}")
+    public void confirmationVisit(@PathVariable("appointmentId") Long appointmentId) {
+        appointmentService.confirmVisit(appointmentId);
+    }
+
 }

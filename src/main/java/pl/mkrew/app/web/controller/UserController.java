@@ -5,9 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.*;
 import pl.mkrew.app.dto.UserDto;
 import pl.mkrew.app.response.GetUserDetails;
 import pl.mkrew.app.service.UserService;
+import pl.mkrew.app.web.controller.request.ChangePersonalDataRequest;
+import pl.mkrew.app.web.controller.request.ChangePasswordRequest;
 import pl.mkrew.app.web.controller.response.GetUserResponse;
 
 import java.util.List;
@@ -40,10 +43,21 @@ public class UserController {
         System.out.println("Potwierdzony");
     }
 
-//    @GetMapping("/home")
-//    private void home(){
-//        System.out.println("home");
+    @PostMapping("/update/{userId}")
+    private void changePersonalDataAndInfo(@PathVariable("userId") Long userId, @RequestBody ChangePersonalDataRequest request){
+        userService.changePersonalData(userId, request.getUserDto());
+    }
+
+
+    @PostMapping("/change/{userId}")
+    private void changeUserPassword(@PathVariable("userId")Long userId, String oldPassword, String newPassword, @RequestBody ChangePasswordRequest request) {
+        userService.changePasswordForUser(userId, oldPassword, newPassword, request.getUserDto());
+    }
+
+    @DeleteMapping("/{id}")
+    public void disableUser(@PathVariable("id") Long userId) {
+
+        userService.deleteUser(userId);
+    }
 //    }
-
-
 }

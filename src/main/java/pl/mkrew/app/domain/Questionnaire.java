@@ -2,13 +2,9 @@ package pl.mkrew.app.domain;
 
 import lombok.*;
 
-import pl.mkrew.app.web.controller.request.QuestionnaireRequest;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data

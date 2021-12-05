@@ -4,8 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.mkrew.app.domain.Appointment;
+import pl.mkrew.app.domain.RCKiK;
 import pl.mkrew.app.domain.Symptoms;
+import pl.mkrew.app.domain.UserEntity;
 
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,6 +24,15 @@ public class QuestionnaireDto {
     private Long id;
     private String firstName;
     private String lastName;
+
+    @OneToMany
+    private UserEntity userEntity;
+
+    @OneToMany
+    private RCKiK rckik;
+
+    @OneToMany
+    private Appointment appointmentId;
 
     public QuestionnaireDto(Long id, String firstName, String lastName) {
     }

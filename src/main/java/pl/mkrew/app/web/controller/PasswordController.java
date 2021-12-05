@@ -20,6 +20,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
+@RequestMapping("/v1/user")
 public class PasswordController {
 
     @Autowired
@@ -30,12 +31,12 @@ public class PasswordController {
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @RequestMapping(value = "/v1/forgot", method = RequestMethod.GET)
+    @RequestMapping(value = "/forgot", method = RequestMethod.GET)
     public ModelAndView displayForgotPasswordPage() {
         return new ModelAndView("forgotPassword");
     }
 
-    @RequestMapping(value = "/v1/forgot", method = RequestMethod.POST)
+    @RequestMapping(value = "/forgot", method = RequestMethod.POST)
     public ModelAndView processForgotPasswordForm(ModelAndView modelAndView, @RequestParam("email") String userEmail, HttpServletRequest request) {
 
         Optional<UserEntity> userEntity = userService.findUserByEmail(userEmail);
@@ -63,7 +64,7 @@ public class PasswordController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/v1/reset", method = RequestMethod.POST)
+    @RequestMapping(value = "/reset", method = RequestMethod.POST)
     public ModelAndView setNewPassword(ModelAndView modelAndView, @RequestParam Map<String, String> requestParams, RedirectAttributes redir) {
 
         Optional<UserEntity> user = userService.findUserByResetToken(requestParams.get("token"));
