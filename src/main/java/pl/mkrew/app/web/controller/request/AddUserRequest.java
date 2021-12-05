@@ -3,6 +3,7 @@ package pl.mkrew.app.web.controller.request;
 import com.sun.istack.NotNull;
 import lombok.Data;
 import net.andreinc.jbvext.annotations.str.Password;
+import pl.mkrew.app.domain.BloodGroup;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -25,6 +26,6 @@ public class AddUserRequest {
     private String email;
     @Pattern(regexp = "(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)", message = "numer telefonu musi zawierać format: 000-000-000")
     private String phoneNumber;
-    private String bloodGroup;
+    private BloodGroup bloodGroup;
 
 }

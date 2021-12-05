@@ -3,8 +3,14 @@ package pl.mkrew.app.web.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.firewall.RequestRejectedException;
 import org.springframework.web.bind.annotation.*;
+import pl.mkrew.app.dto.UserDto;
+import pl.mkrew.app.security.MkrewUserDetails;
 import pl.mkrew.app.service.AppointmentService;
 import pl.mkrew.app.web.controller.request.CreateScheduleAppointmentRequest;
 import pl.mkrew.app.web.request.ReservationRequest;
@@ -44,13 +50,14 @@ public class AppointmentController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/reservarion/{reservationId}")
+    @DeleteMapping("/reservation/delete/{reservationId}")
     public void removeReservation(@PathVariable("reservationId") Long reservationId) {
-        appointmentService.deleteReservation(reservationId);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        MkrewUserDetails userdetails = (MkrewUserDetails) authentication.getDetails();
+        appointmentService.deleteReservation(reservationId, userdetails.getUserId());
     }
 
-    @DeleteMapping("/reservarion/delete/{reservationId}")
-    @Secured("ROLE_ADMIN")
+    @DeleteMapping("/reservation/delete-admin/{reservationId}")
     public void removeReservationAsAdmin(@PathVariable("reservationId") Long reservationId) {
         appointmentService.deleteReservationAsAdmin(reservationId);
     }

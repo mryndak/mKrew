@@ -61,12 +61,13 @@ public class AppointmentService {
         appointmentRepository.save(appointment);
     }
 
-    public void deleteReservation(Long reservationId) {
-        Appointment appointment = appointmentRepository.findById(reservationId).orElseThrow();
+    public void deleteReservation(Long reservationId, Long userId) {
+        Appointment appointment = appointmentRepository.findByIdAndUserId(reservationId, userId).orElseThrow();
 
-        appointment.setAvailable(true);
-        appointment.setUser(null);
-        appointmentRepository.save(appointment);
+            appointment.setAvailable(true);
+            appointment.setUser(null);
+            appointmentRepository.save(appointment);
+
     }
 
     public void deleteReservationAsAdmin(Long reservationId) {

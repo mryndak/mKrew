@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.mkrew.app.domain.Appointment;
+import pl.mkrew.app.domain.BloodGroup;
 import pl.mkrew.app.domain.Questionnaire;
 import pl.mkrew.app.domain.RCKiK;
 
@@ -26,7 +27,7 @@ public class UserDto {
     private String name;
     private String surname;
     private String phoneNumber;
-    private String bloodGroup;
+    private BloodGroup bloodGroup;
     private RCKiK rckik;
     private boolean confirmationStatus;
     private UUID confirmationId;
